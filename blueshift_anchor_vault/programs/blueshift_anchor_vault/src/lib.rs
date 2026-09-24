@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_lang::system_program::{Transfer, transfer};
 
-declare_id!("22222222222222222222222222222222222222222222");
+declare_id!("vBWBj17Eu6xCK3FPxNYnvxch6sxe64TW9dVLDwcqD5S");
 
 #[program]
 pub mod blueshift_anchor_vault {

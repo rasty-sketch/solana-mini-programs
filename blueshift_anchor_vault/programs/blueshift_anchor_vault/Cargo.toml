@@ -1,28 +1,36 @@
 [package]
-name = "blueshift_anchor_vault"
-version = "0.1.0"
+name        = "blueshift_anchor_vault"
+version     = "0.1.0"
 description = "Created with Anchor"
-edition = "2021"
+edition     = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "blueshift_anchor_vault"
+name       = "blueshift_anchor_vault"
 
 [features]
-default = []
-cpi = ["no-entrypoint"]
-no-entrypoint = []
-no-idl = []
+default        = []
+cpi            = ["no-entrypoint"]
+no-entrypoint  = []
+no-idl         = []
 no-log-ix-name = []
-idl-build = ["anchor-lang/idl-build"]
-anchor-debug = []
-custom-heap = []
-custom-panic = []
+idl-build      = ["anchor-lang/idl-build"]
+anchor-debug   = []
+custom-heap    = []
+custom-panic   = []
 
 
 [dependencies]
 anchor-lang = { version = "0.32.1", features = ["init-if-needed"] }
 
+[dev-dependencies]
+litesvm            = "=0.7.1"
+solana-keypair     = "2.2"
+solana-signer      = "2.2"
+solana-transaction = "2.2"
+
 
 [lints.rust]
-unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }
+unexpected_cfgs = { level = "warn", check-cfg = [
+    'cfg(target_os, values("solana"))',
+] }
