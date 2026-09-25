@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_spl::{
     associated_token::AssociatedToken,
-    token_interface::{Mint, TokenAccount, TokenInterface},
+    token_interface::{ Mint, TokenAccount, TokenInterface },
 };
 
 #[derive(Accounts)]
@@ -24,7 +24,7 @@ pub struct Make<'info> {
     #[account(
         init,
         payer = user,
-        seeds = [b"escrow",user.key().as_ref(), &escrow_id.to_le_bytes()],
+        seeds = [b"escrow", user.key().as_ref(), &escrow_id.to_le_bytes()],
         bump,
         space = 8 + Escrow::INIT_SPACE
     )]
@@ -44,7 +44,7 @@ pub struct Make<'info> {
         payer = user,
         associated_token::mint = wanted_mint,
         associated_token::authority = user,
-        associated_token::token_program = token_program,
+        associated_token::token_program = token_program
     )]
     pub user_wanted_ata: InterfaceAccount<'info, TokenAccount>,
     pub system_program: Program<'info, System>,
@@ -93,7 +93,7 @@ pub struct Take<'info> {
         payer = buyer,
         associated_token::mint = offered_mint,
         associated_token::authority = buyer,
-        associated_token::token_program = token_program,
+        associated_token::token_program = token_program
     )]
     pub buyer_ata: Box<InterfaceAccount<'info, TokenAccount>>,
 
@@ -171,7 +171,7 @@ pub struct Expired<'info> {
     pub anyone: Signer<'info>,
 
     /// CHECK: validated via escrow.authority constraint
-    #[account(address = escrow.authority)]
+    #[account(address = escrow.authority,mut)]
     pub user: UncheckedAccount<'info>,
 
     #[account(address = escrow.offered_mint)]
@@ -252,4 +252,6 @@ pub enum EscrowError {
     SameMint,
     #[msg("deadline is still due")]
     NotExpired,
+    #[msg("escrow terms do not match the expected amount and cost")]
+    TermsChanged,
 }

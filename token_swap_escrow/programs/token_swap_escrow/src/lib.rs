@@ -54,7 +54,23 @@ pub mod token_swap_escrow {
         Ok(())
     }
 
-    pub fn take(ctx: Context<Take>, escrow_id: u32) -> Result<()> {
+    pub fn take(
+        ctx: Context<Take>,
+        escrow_id: u32,
+        expected_amount: u64,
+        expected_cost: u64
+    ) -> Result<()> {
+        require_eq!(
+            ctx.accounts.escrow.amount,
+            expected_amount,
+            EscrowError::TermsChanged
+        );
+        require_eq!(
+            ctx.accounts.escrow.cost,
+            expected_cost,
+            EscrowError::TermsChanged
+        );
+
         let clock = Clock::get()?;
 
         require!(ctx.accounts.escrow.deadline >= clock.unix_timestamp, EscrowError::Expired);
