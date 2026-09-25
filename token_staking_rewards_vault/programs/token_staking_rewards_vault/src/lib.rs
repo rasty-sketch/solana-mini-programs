@@ -99,16 +99,15 @@ pub mod token_staking_rewards_vault {
         let vault = &mut ctx.accounts.vault;
         let user_profile = &mut ctx.accounts.user_stake_profile;
 
-        require!(vault.total_staked > 0, StakingErrors::VaultEmpty);
-        require!(user_profile.staked_amount > 0, StakingErrors::NotStaked);
-
         let current_time = Clock::get()?.unix_timestamp;
 
-        let time_elapsed = current_time.checked_sub(vault.last_updated).unwrap() as u128;
-        let rewards =
-            (time_elapsed * vault.reward_rate as u128 * PRECISION) / vault.total_staked as u128;
+        if vault.total_staked > 0 {
+            let time_elapsed = current_time.checked_sub(vault.last_updated).unwrap() as u128;
+            let rewards =
+                (time_elapsed * vault.reward_rate as u128 * PRECISION) / vault.total_staked as u128;
 
-        vault.reward_per_token_stored = vault.reward_per_token_stored.checked_add(rewards).unwrap();
+            vault.reward_per_token_stored = vault.reward_per_token_stored.checked_add(rewards).unwrap();
+        }
 
         vault.last_updated = current_time;
 
