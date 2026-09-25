@@ -1,0 +1,13 @@
+[toolchain]
+package_manager = "yarn"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+token_swap_escrow = "72PTvNB2wg7TyyaKySLreb1kmSwajky5XKqmDbo3FW7P"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"

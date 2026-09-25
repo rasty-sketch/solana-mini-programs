@@ -1,0 +1,35 @@
+[package]
+name = "token_swap_escrow"
+version = "0.1.0"
+description = "Created with Anchor"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "token_swap_escrow"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+anchor-debug = []
+custom-heap = []
+custom-panic = []
+
+
+[dependencies]
+anchor-lang = { version = "1.0.0", features = ["init-if-needed"] }
+anchor-spl = "1.0.0"
+sha2 = "0.11.0"
+solana-pubkey = "4.2.0"
+mollusk-svm-programs-token = "0.12.0"
+mollusk-svm = "*"
+solana-account = "3.4.0"
+spl-token-interface = "2.0.0"
+solana-program-option = "3.1.0"
+solana-sdk-ids = "3.1.0"
+spl-associated-token-account-interface = "2.0.0"
+solana-instruction = "3.4.0"
