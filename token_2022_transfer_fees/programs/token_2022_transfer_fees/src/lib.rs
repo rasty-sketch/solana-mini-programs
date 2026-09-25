@@ -30,7 +30,7 @@ use anchor_spl::{
 declare_id!("592nNMRg8cz6Y4KFTMeE4YXtqmWeNnbFZNz2zSmqB4uD");
 
 #[program]
-pub mod transfer_fee {
+pub mod token_2022_transfer_fees {
     use anchor_spl::token_2022;
 
     use super::*;

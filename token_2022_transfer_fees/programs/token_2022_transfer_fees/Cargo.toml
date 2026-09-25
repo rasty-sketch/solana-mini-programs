@@ -1,12 +1,12 @@
 [package]
-name = "transfer_fee"
+name = "token_2022_transfer_fees"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "transfer_fee"
+name = "token_2022_transfer_fees"
 
 [features]
 default = []

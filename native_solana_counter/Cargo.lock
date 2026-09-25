@@ -514,7 +514,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "my_counter"
+name = "native_solana_counter"
 version = "0.1.0"
 dependencies = [
  "borsh",
